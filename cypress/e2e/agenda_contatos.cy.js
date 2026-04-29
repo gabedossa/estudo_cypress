@@ -24,20 +24,10 @@ describe('Agenda de Contatos', () => {
   }
 
   function preencherFormulario({ nome, sobrenome, email, telefone }) {
-    cy.get('input').then(($inputs) => {
-      if ($inputs.length >= 4) {
-        cy.get('input').eq(0).clear().type(nome)
-        cy.get('input').eq(1).clear().type(sobrenome)
-        cy.get('input').eq(2).clear().type(email)
-        cy.get('input').eq(3).clear().type(telefone)
-      } else {
-        // Seletores alternativos por placeholder / name
-        cy.get('input[placeholder*="ome"], input[name*="nome"]').first().clear().type(nome)
-        cy.get('input[placeholder*="obrenome"], input[name*="sobrenome"]').first().clear().type(sobrenome)
-        cy.get('input[type="email"], input[placeholder*="mail"]').first().clear().type(email)
-        cy.get('input[type="tel"], input[placeholder*="elefone"]').first().clear().type(telefone)
-      }
-    })
+    cy.get('input[placeholder*="Nome"], input[name*="nome"], input[id*="nome"]').first().clear().type(nome)
+    cy.get('input[placeholder*="Sobrenome"], input[name*="sobrenome"], input[id*="sobrenome"]').first().clear().type(sobrenome)
+    cy.get('input[placeholder*="E-mail"], input[name*="email"], input[id*="email"]').first().clear().type(email)
+    cy.get('input[placeholder*="Telefone"], input[name*="telefone"], input[id*="telefone"]').first().clear().type(telefone)
   }
 
   function salvarFormulario() {
